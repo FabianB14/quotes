@@ -3,25 +3,42 @@
  */
 package quotes;
 
-import com.google.gson.Gson;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.PrintStream;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 public class AppTest {
 
-  @Test public void testGetRandomQuote() throws FileNotFoundException {
-    Quote[] quotes = App.getQuotesFromFile();
+  Quote[] quotes;
+  QuoteApi myNewQuote;
+  @Before
+  public void setup() throws FileNotFoundException {
+    quotes = App.getQuotesFromFile();
     App.getRandomQuote(quotes);
+    myNewQuote = new QuoteApi("This is something Fabian just made up!!!!");
+    App.write(myNewQuote);
+  }
+
+  @Test public void testGetRandomQuote(){
+
     assertNotEquals("Should contain a quote", "", App.getRandomQuote(quotes));
   }
 
-  @Test public void testGetQuoteFromAPI(){
-
+  @Test public void testGetQuoteFromAPI() throws FileNotFoundException {
+//This is testing the Api quotes and the ApiQuote class
+  assertNotEquals("this should be the first quote from the API","", App.getQuoteFromAPI());
   }
-}
+
+  @Test public void testWriteToFile() throws FileNotFoundException {
+    assertNotEquals("This should be my awesome new quote","",App.getQuotesFromFile());
+
+
+  

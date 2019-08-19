@@ -15,25 +15,25 @@ public class App {
       getQuoteFromAPI();
   }
 //This is to get quotes from API and write it to a class
-  public static void getQuoteFromAPI() throws FileNotFoundException {
+  public static String  getQuoteFromAPI() throws FileNotFoundException {
     try {
       URL url = new URL("http://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuote");
       HttpURLConnection con = (HttpURLConnection) url.openConnection();
       con.setRequestMethod("GET");
       System.out.println(con.getResponseCode());
-
       BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
       Gson gson = new Gson();
       QuoteApi apiQuote = gson.fromJson(in, QuoteApi.class);
       write(apiQuote);
       in.close();
-
       System.out.println(apiQuote);
+      return apiQuote.toString();
     } catch (IOException e) {
       e.printStackTrace();
       Quote[] quotes = getQuotesFromFile();
       getRandomQuote(quotes);
     }
+      return "not found";
   }
 
 //This is to write quotes to file
