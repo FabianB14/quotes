@@ -12,33 +12,11 @@ import java.net.URL;
 public class App {
 
   public static void main(String[] args) throws FileNotFoundException {
-      getQuoteFromAPI();
-  }
-
-  public static void getQuoteFromAPI() throws FileNotFoundException {
-    // https://www.baeldung.com/java-http-request
-    try {
-      URL url = new URL("http://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuote");
-      HttpURLConnection con = (HttpURLConnection) url.openConnection();
-      con.setRequestMethod("GET");
-      System.out.println(con.getResponseCode());
-
-      BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-      Gson gson = new Gson();
-      ApiQuote apiQuote = gson.fromJson(in, ApiQuote.class);
-      write(apiQuote);
-      in.close();
-
-      System.out.println(apiQuote);
-    } catch (IOException e) {
-      e.printStackTrace();
-      Quote[] quotes = getQuotesFromFile();
-      getRandomQuote(quotes);
-    }
+//      getQuoteFromAPI();
   }
 
 
-  public static void write(ApiQuote quote) {
+  public static void write(QuoteApi quote) {
     BufferedWriter writer = null;
     try {
       Gson gson = new Gson();

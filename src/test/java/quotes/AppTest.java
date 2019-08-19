@@ -22,8 +22,6 @@ public class AppTest {
   }
 
   @Test public void testGetQuoteFromAPI(){
-//    ApiQuote apiQuotes = App.getQuoteFromAPI();
-//    assertNotEquals("Should contain a quote", "", outContent.toString());
 
   }
 }

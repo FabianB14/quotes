@@ -1,9 +1,9 @@
 package quotes;
 
-public class ApiQuote {
+public class QuoteApi {
   String starWarsQuote;
 
-  public ApiQuote(String starWarsQuote){
+  public QuoteApi(String starWarsQuote){
     this.starWarsQuote = starWarsQuote;
   }
 
