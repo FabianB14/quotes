@@ -30,12 +30,11 @@ public class App {
       return apiQuote.toString();
     } catch (IOException e) {
       e.printStackTrace();
-      Quote[] quotes = makeQuotesFromFile();
-      System.out.println(getRandomQuoteFromFile(quotes));
+      Quote[] quotes = getQuotesFromFile();
+      getRandomQuote(quotes);
     }
       return "not found";
   }
-
 
 //This is to write quotes to file
   public static void write(QuoteApi quote) {
@@ -51,17 +50,14 @@ public class App {
       e.printStackTrace();
     }
   }
-
 //This is to get quotes from the file
   public static Quote[] getQuotesFromFile() throws FileNotFoundException {
     Gson gson = new Gson();
     Quote[] quotes = gson.fromJson(new FileReader("src/main/resources/recentquotes.json"), Quote[].class);
     return quotes;
   }
-
 //This will pull a random quote
   public static Quote getRandomQuote(Quote[] quotes) {
-
     int random = (int)(Math.random() * quotes.length);
     return quotes[random];
   }
